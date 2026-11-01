@@ -1240,7 +1240,7 @@ body::before{background:
   transition:transform .35s var(--ez-spring)}
 .ico-btn svg{width:18px;height:18px;stroke-width:1.8}
 .badge{background:var(--gold2);color:#fff;border-color:var(--ink);font-family:'Geist',sans-serif}
-.av{border:0;background:var(--molten);color:#fff;box-shadow:var(--e1)}
+.av{border:0;background-color:var(--gold2);background-image:var(--molten);background-size:cover;background-position:center;background-repeat:no-repeat;color:#fff;box-shadow:var(--e1)}
 .av.ring{box-shadow:0 0 0 2px var(--ink),0 0 0 3.5px var(--gold)}
 .av-40{width:40px;height:40px}
 
@@ -1453,16 +1453,16 @@ body::before{background:
 
 /* ── fuel ── */
 .fuel-hero{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;padding:18px 16px}
-.ring{position:relative;width:150px;height:150px}
-.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-linecap:round}
-.ring .r-t{stroke:var(--track)}
-.ring .r-f{transition:stroke-dashoffset 1s var(--ez-out)}
-.ring-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.ring-in b{font-size:30px;font-weight:700;letter-spacing:-.04em;line-height:1}
-.ring-in span{font-size:11.5px;color:var(--txt3);margin-top:4px;font-weight:550}
-.ring-in em{font-style:normal;font-size:11px;color:var(--txt4);margin-top:2px;font-family:'Geist Mono',monospace}
-.ring.over .ring-in b{color:var(--red)}
+.fring{position:relative;width:150px;height:150px}
+.fring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.fring circle{fill:none;stroke-linecap:round}
+.fring .r-t{stroke:var(--track)}
+.fring .r-f{transition:stroke-dashoffset 1s var(--ez-out)}
+.fring-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.fring-in b{font-size:30px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.fring-in span{font-size:11.5px;color:var(--txt3);margin-top:4px;font-weight:550}
+.fring-in em{font-style:normal;font-size:11px;color:var(--txt4);margin-top:2px;font-family:'Geist Mono',monospace}
+.fring.over .fring-in b{color:var(--red)}
 .mbars{display:flex;flex-direction:column;gap:12px}
 .mbar-h{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;margin-bottom:6px}
 .mbar-h b{font-weight:600}
@@ -1524,7 +1524,7 @@ body::before{background:
 
 @media (max-width:370px){
   .fuel-hero{grid-template-columns:128px minmax(0,1fr);gap:12px}
-  .ring{width:128px;height:128px}.ring-in b{font-size:25px}
+  .fring{width:128px;height:128px}.fring-in b{font-size:25px}
   .pg-h h1{font-size:26px}
 }
 @media (prefers-reduced-motion:reduce){.main.enter>*,.main.enter .ch-bar,.main.enter .ch svg .ch-draw{animation:none!important;stroke-dashoffset:0}}
@@ -8967,11 +8967,11 @@ viewFood=function(){
     <div class="mbar-t"><i style="width:${tg?Math.min(100,v/tg*100):(v?100:0)}%;background:${col}"></i></div></div>`;
   let h=fuelStaleBanner();
   h+=`<div class="card fuel-card"><div class="fuel-hero">
-      <div class="ring${over?' over':''}"><svg viewBox="0 0 150 150">
+      <div class="fring${over?' over':''}"><svg viewBox="0 0 150 150">
         <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFA04A"/><stop offset="1" stop-color="#F2480F"/></linearGradient></defs>
         <circle class="r-t" cx="75" cy="75" r="${R}" stroke-width="13"/>
         <circle class="r-f" cx="75" cy="75" r="${R}" stroke-width="13" stroke="${over?'var(--red)':'url(#rg)'}" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-pct)).toFixed(1)}"/></svg>
-        <div class="ring-in"><b class="mono">${commas(T.k?Math.abs(left):t.kcal)}</b><span>${T.k?(over?'kcal over':'kcal left'):'kcal eaten'}</span>${T.k?`<em>${commas(t.kcal)} / ${commas(T.k)}</em>`:''}</div>
+        <div class="fring-in"><b class="mono">${commas(T.k?Math.abs(left):t.kcal)}</b><span>${T.k?(over?'kcal over':'kcal left'):'kcal eaten'}</span>${T.k?`<em>${commas(t.kcal)} / ${commas(T.k)}</em>`:''}</div>
       </div>
       <div class="mbars">${bar('Protein',t.p,T.p,'var(--c-p)')}${bar('Carbs',t.c,T.c,'var(--c-c)')}${bar('Fat',t.fat,T.f,'var(--c-f)')}</div>
     </div>
